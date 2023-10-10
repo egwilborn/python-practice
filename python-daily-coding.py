@@ -1,4 +1,4 @@
-    # Challenge: 01-addOne
+# Challenge: 01-addOne
 # Difficulty: Basic
 # Prompt:
 # Write a function called addOne that takes a single number as an argument and returns that number plus 1.
@@ -6,15 +6,15 @@
 # addOne(1) //=> 2
 # addOne(-5) //=> -4
 
-## solution
+# solution
 def add_one(number):
-    number +=1
+    number += 1
     return number
 # print(add_one(1))
 # print(add_one(-5))
 
 # Challenge: 02-addTwoNumbers
-# Difficulty: Basic  
+# Difficulty: Basic
 # Prompt:
 # Write a function called addTwoNumbers that accepts two numeric arguments and returns the sum of those two numbers.
 # If either argument is not a Number, return the value of NaN.
@@ -23,6 +23,8 @@ def add_one(number):
 # addTwoNumbers(10, -2) //=> 8
 # addTwoNumbers(0, 0) //=> 0
 # addTwoNumbers('Hello', 5) //=> NaN
+
+
 def add_two_numbers(num1, num2):
     sum = num1 + num2
     return sum
@@ -65,10 +67,11 @@ def sum_numbers(array):
 
 # Hint:  Check out the Further Study section of the JS Functions lesson regarding "rest parameters"
 
+
 def add_list(*numbers):
     sum = 0
     for number in numbers:
-        sum+= number
+        sum += number
     return sum
 
 # print(add_list(1))
@@ -104,8 +107,9 @@ def compute_remainder(dividend, divisor):
 # range(1,1) //=> []
 # range(5,2) //=> "First argument must be less than second"
 
-def python_range(x,y):
-    return list(range(x,y))
+
+def python_range(x, y):
+    return list(range(x, y))
 
 # print(python_range(0,10))
 # print(python_range(6,10))
@@ -116,7 +120,7 @@ def python_range(x,y):
 # Prompt:
 # - Write a function called reverseUpcaseString that accepts a single string argument, then returns the string with its characters in reverse order and converts all characters to uppercase.
 # Examples:
-# reverseUpcaseString("SEI Rocks!"); //=> "!SKCOR IES" 
+# reverseUpcaseString("SEI Rocks!"); //=> "!SKCOR IES"
 
 
 # def reverse_upcase_string(string):
@@ -140,11 +144,10 @@ def remove_ends(string):
     array = []
     for let in string:
         array.append(let)
-    array_slice = slice(1,(len(array)-1))
+    array_slice = slice(1, (len(array)-1))
     new_string = "".join(array[array_slice])
     print(new_string)
-  
-    
+
 
 # remove_ends("dragon")
 # remove_ends("a")
@@ -167,7 +170,7 @@ def remove_ends(string):
 def char_count(string):
     char_tally = {}
     for let in string:
-        char_tally[let]= string.count(let)
+        char_tally[let] = string.count(let)
     return char_tally
 
 # print(char_count('Today is fantastic!'))
@@ -199,3 +202,35 @@ def format_with_padding(num, char, length):
 # print(format_with_padding(123, '0', 5))
 # print(format_with_padding(42, '*', 10)); #=> "********42"
 # print(format_with_padding(1234, '*', 3)); #=> "1234"
+
+
+# /*-----------------------------------------------------------------
+# Challenge: 11-isPalindrome
+# Difficulty: Intermediate
+# Prompt:
+# - Write a function called isPalindrome that accepts a single string argument, then returns true or false depending upon whether or not the string is a palindrome.
+# - A palindrome is a word or phrase that are the same forward or backward.
+# - Casing and spaces are not included when considering whether or not a string is a palindrome.
+# - If the length of the string is 0 or 1, return true.
+# Examples:
+# isPalindrome('SEI Rocks'); //=> false
+# isPalindrome('rotor'); //=> true
+# isPalindrome('A nut for a jar of tuna'); //=> true
+# isPalindrome(''); //=> true
+# -----------------------------------------------------------------*/
+
+
+def is_palindrome(str):
+    no_space_str = str.replace(" ", "").lower()
+    reverse_str = no_space_str[::-1]
+    # print(no_space_str, reverse_str)
+    if reverse_str == no_space_str:
+        return True
+    else:
+        return False
+
+
+print(is_palindrome('SEI Rocks'))  # //=> false
+print(is_palindrome('rotor'))  # //=> true
+print(is_palindrome('A nut for a jar of tuna'))  # //=> true
+print(is_palindrome(''))  # //=> true
