@@ -230,7 +230,42 @@ def is_palindrome(str):
         return False
 
 
-print(is_palindrome('SEI Rocks'))  # //=> false
-print(is_palindrome('rotor'))  # //=> true
-print(is_palindrome('A nut for a jar of tuna'))  # //=> true
-print(is_palindrome(''))  # //=> true
+# print(is_palindrome('SEI Rocks'))  # //=> false
+# print(is_palindrome('rotor'))  # //=> true
+# print(is_palindrome('A nut for a jar of tuna'))  # //=> true
+# print(is_palindrome(''))  # //=> true
+
+# /*-----------------------------------------------------------------
+# Challenge: 12-hammingDistance
+# Difficulty: Intermediate
+# Prompt:
+# In information theory, the hamming distance refers to the count of the differences between two strings of equal length.  It is used in computer science for such things as implementing "fuzzy search"  capability.
+# - Write a function named hammingDistance that accepts two arguments which are both strings of equal length.
+# - The function should return the count of the symbols (characters, numbers, etc.) at the same position within each string that are different.
+# - If the strings are not of the same length, the function should return NaN.
+# Examples:
+# hammingDistance('abc', 'abc'); //=> 0
+# hammingDistance('a1c', 'a2c'); //=> 1
+# hammingDistance('!!!!', '****'); //=> 4
+# hammingDistance('abc', 'ab'); //=> NaN
+# -----------------------------------------------------------------*/
+
+def hamming_distance(str1, str2):
+    if len(str1) != len(str2):
+        return "NaN"
+    map = {}
+    count = 0
+
+    for idx, char in enumerate(str1):
+        map[idx] = char
+    for idx, char in enumerate(str2):
+        if (char != map[idx]):
+            count += 1
+    # print(count)
+    return count
+
+
+# print(hamming_distance('abc', 'abc'))  # //=> 0
+# print(hamming_distance('a1c', 'a2c'))  # //=> 1
+# print(hamming_distance('!!!!', '****'))  # //=> 4
+# print(hamming_distance('abc', 'ab'))  # //=> NaN
