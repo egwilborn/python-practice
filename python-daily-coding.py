@@ -269,3 +269,32 @@ def hamming_distance(str1, str2):
 # print(hamming_distance('a1c', 'a2c'))  # //=> 1
 # print(hamming_distance('!!!!', '****'))  # //=> 4
 # print(hamming_distance('abc', 'ab'))  # //=> NaN
+
+# /*-----------------------------------------------------------------
+# Challenge: 13-mumble
+# Difficulty: Intermediate
+# Prompt:
+# - Write a function called mumble that accepts a single string argument.
+# - The function should return a string that has each character repeated the number of times according to its position within the string arg.  In addition, each repeated section of characters should be separated by a hyphen (-).
+# - Examples describe it best..
+# Examples:
+# mumble('X'); //=> 'X'
+# mumble('abc'); //=> 'a-bb-ccc'
+# mumble('121'); //=> '1-22-111'
+# mumble('!A 2'); //=> '!-AA-   -2222'
+# -----------------------------------------------------------------*/
+def mumble(str):
+    mumble_arr = []
+    position = 0
+    for char in str:
+        position += 1
+        repeated = char*position
+        mumble_arr.append(repeated)
+    result_string = "-".join(mumble_arr)
+    return result_string
+
+
+# print(mumble('X'))  # //=> 'X'
+# print(mumble('abc'))  # //=> 'a-bb-ccc'
+# print(mumble('121'))  # //=> '1-22-111'
+# print(mumble('!A 2'))  # //=> '!-AA-   -2222'
