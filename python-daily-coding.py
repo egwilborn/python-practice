@@ -298,3 +298,57 @@ def mumble(str):
 # print(mumble('abc'))  # //=> 'a-bb-ccc'
 # print(mumble('121'))  # //=> '1-22-111'
 # print(mumble('!A 2'))  # //=> '!-AA-   -2222'
+
+# /*-----------------------------------------------------------------
+# Challenge: 14-fromPairs
+# Difficulty: Intermediate
+# Prompt:
+# - Write a function named fromPairs that creates an object from an array containing nested arrays.
+# - Each nested array will have two elements representing key/value pairs used to create key/value pairs in an object to be returned by the function.
+# - If a key appears in multiple pairs, the rightmost pair should overwrite previous the previous entry in the object.
+# Examples:
+# fromPairs([ ['a', 1], ['b', 2], ['c', 3] ]) //=> { a: 1, b: 2, c: 3 }
+# fromPairs([ ['name', 'Sam"], ['age', 24], ['name', 'Sally'] ]) //=> { name: "Sally", age: 24 }
+# -----------------------------------------------------------------*/
+
+
+def from_pairs(arr):
+    arr_object = {}
+    for element in arr:
+        arr_object[element[0]] = element[1]
+    return arr_object
+
+
+# print(from_pairs([['a', 1], ['b', 2], ['c', 3]]))  # //=> { a: 1, b: 2, c: 3 }
+# # //=> { name: "Sally", age: 24 }
+# print(from_pairs([['name', 'Sam'], ['age', 24], ['name', 'Sally']]))
+
+
+# /*-----------------------------------------------------------------
+# Challenge: 15-mergeObjects
+# Difficulty:  Intermediate
+# Prompt:
+# - Write a function named mergeObjects that accepts at least two objects as arguments, merges the properties of the second through n objects into the first object, then finally returns the first object.
+# - If any objects have the same property key, values from the object(s) later in the arguments list should overwrite earlier values.
+# Examples:
+# mergeObjects({}, {a: 1});  //=> {a: 1} (same object as first arg)
+
+# mergeObjects({a: 1, b: 2, c: 3}, {d: 4});  //=> {a: 1, b: 2, c: 3, d: 4}
+# mergeObjects({a: 1, b: 2, c: 3}, {d: 4}, {b: 22, d: 44});  //=> {a: 1, b: 22, c: 3, d: 44}
+# -----------------------------------------------------------------*/
+
+def merge_objects(*args):
+    args_array = []
+    for arg in args:
+        args_array.append(arg)
+    arr_length = range(1, len(args_array))
+    for x in arr_length:
+        for i in args_array[x]:
+            args_array[0][i] = args_array[x][i]
+    return args_array[0]
+
+
+# # //=> {a: 1, b: 2, c: 3, d: 4}
+# print(merge_objects({"a": 1, "b": 2, "c": 3}, {"d": 4}))
+# # //=> {a: 1, b: 22, c: 3, d: 44}
+# print(merge_objects({"a": 1, "b": 2, "c": 3}, {"d": 4}, {"b": 22, "d": 44}))
