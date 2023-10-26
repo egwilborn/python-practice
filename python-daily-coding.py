@@ -468,6 +468,38 @@ def flatten(list_args):
     return flattened_list
 
 
-print(flatten([1, [2, 3]]))
+# print(flatten([1, [2, 3]]))
 # //=> [1, 2, 3]  (a new array)
-print(flatten([1, [2, [3, [4]]], 1, 'a', ['b', 'c']]))
+# print(flatten([1, [2, [3, [4]]], 1, 'a', ['b', 'c']]))
+
+# /*-----------------------------------------------------------------
+# Challenge: 20-isPrime
+# Difficulty: Intermediate
+# Prompt:
+# - Write a function named isPrime that returns true when the integer argument passed to it is a prime number and false when the argument passed to it is not prime.
+# - A prime number is a whole number (integer) greater than 1 that is evenly divisible by only itself.
+# Examples:
+# isPrime(2) //=> true
+# isPrime(3) //=> true
+# isPrime(4) //=> false
+# isPrime(29) //=> true
+# isPrime(200) //=> false
+# -----------------------------------------------------------------*/
+def is_prime(arg):
+    if (arg == 2 or arg == 3 or arg == 5):
+        return True
+    elif (arg % 2 == 0):
+        return False
+    elif (arg % 3 == 0):
+        return False
+    elif (arg % 5 == 0):
+        return False
+    else:
+        return True
+
+
+print(is_prime(2))  # //=> true
+print(is_prime(3))  # //=> true
+print(is_prime(4))  # //=> false
+print(is_prime(29))  # //=> true
+print(is_prime(200))  # //=> false
