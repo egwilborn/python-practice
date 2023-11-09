@@ -485,21 +485,69 @@ def flatten(list_args):
 # isPrime(29) //=> true
 # isPrime(200) //=> false
 # -----------------------------------------------------------------*/
-def is_prime(arg):
-    if (arg == 2 or arg == 3 or arg == 5):
+# def is_prime(arg):
+#     if (arg == 2 or arg == 3 or arg == 5):
+#         return True
+#     elif (arg % 2 == 0):
+#         return False
+#     elif (arg % 3 == 0):
+#         return False
+#     elif (arg % 5 == 0):
+#         return False
+#     else:
+#         return True
+
+# # ALTERNATIVELY, WITH A LOOP
+# def is_prime(num):
+#     is_num_prime = None
+#     if (num < 2):
+#         is_num_prime = False
+#     for x in range(2, num):
+#         # print(num/x)
+#         if (isinstance((num/x), int)):
+#             is_num_prime = False
+#     is_num_prime = True
+
+
+# print(is_prime(2))  # //=> true
+# print(is_prime(3))  # //=> true
+# # print(is_prime(4))  # //=> false
+# # print(is_prime(29))  # //=> true
+# # print(is_prime(200))  # //=> false
+
+def contain_all_rots(strng, arr):
+    rots_count = 0
+    # first determine all rots
+    # do this by definning an array
+    all_rots = []
+    # take the string and make the rotation then push the new rot in the array
+
+    def rotation(rot_strng):
+        str_list = [0]
+        for char in rot_strng:
+            str_list.append(char)
+        str_list[0] = str_list[(len(str_list)-1)]
+        new_str_list = str_list[0:(len(rot_strng))]
+        rot = "".join(new_str_list)
+        all_rots.append(rot)
+        if (rot == strng):
+            return
+        else:
+            rotation(rot)
+    rotation(strng)
+    for str in all_rots:
+        if str in arr:
+            rots_count += 1
+    if rots_count == len(all_rots):
         return True
-    elif (arg % 2 == 0):
-        return False
-    elif (arg % 3 == 0):
-        return False
-    elif (arg % 5 == 0):
-        return False
     else:
-        return True
+        return False
+
+    # then check if each on is in the given array
 
 
-print(is_prime(2))  # //=> true
-print(is_prime(3))  # //=> true
-print(is_prime(4))  # //=> false
-print(is_prime(29))  # //=> true
-print(is_prime(200))  # //=> false
+print(contain_all_rots(
+    "bsjq", ["bsjq", "qbsj", "sjqb", "twZNsslC", "jqbs"]))  # -> true
+
+print(contain_all_rots(
+    "Ajylvpy", ["Ajylvpy", "ylvpyAj", "jylvpyA", "lvpyAjy", "pyAjylv", "vpyAjyl", "ipywee"]))  # -> false)
