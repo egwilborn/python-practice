@@ -546,8 +546,57 @@ def contain_all_rots(strng, arr):
     # then check if each on is in the given array
 
 
-print(contain_all_rots(
-    "bsjq", ["bsjq", "qbsj", "sjqb", "twZNsslC", "jqbs"]))  # -> true
+# print(contain_all_rots(
+#     "bsjq", ["bsjq", "qbsj", "sjqb", "twZNsslC", "jqbs"]))  # -> true
 
-print(contain_all_rots(
-    "Ajylvpy", ["Ajylvpy", "ylvpyAj", "jylvpyA", "lvpyAjy", "pyAjylv", "vpyAjyl", "ipywee"]))  # -> false)
+# print(contain_all_rots(
+#     "Ajylvpy", ["Ajylvpy", "ylvpyAj", "jylvpyA", "lvpyAjy", "pyAjylv", "vpyAjyl", "ipywee"]))  # -> false)
+
+
+# Make a program that filters a list of strings and returns a list with only your friends name in it.
+
+# If a name has exactly 4 letters in it, you can be sure that it has to be a friend of yours! Otherwise, you can be sure he's not...
+
+# Ex: Input = ["Ryan", "Kieran", "Jason", "Yous"], Output = ["Ryan", "Yous"]
+
+# i.e.
+
+# friend ["Ryan", "Kieran", "Mark"] `shouldBe` ["Ryan", "Mark"]
+# Note: keep the original order of the names in the output.
+
+def friend(x):
+    # making a friend List
+    friend = []
+    # take the list and loop over
+    for name in x:
+        if len(name) == 4:
+            friend.append(name)
+
+    return (friend)
+    # add in a conditional to check the length
+    # if length is 4 letters, push to friend List
+    # if not next continue
+    # return friend array
+
+# DESCRIPTION:
+# Given a string of integers, return the number of odd-numbered substrings that can be formed.
+
+# For example, in the case of "1341", they are 1, 1, 3, 13, 41, 341, 1341, a total of 7 numbers.
+
+# solve("1341") = 7. See test cases for more examples.
+
+
+def solve(x):
+    # define a counter
+    count = 0
+    # setup sliding window
+    char = x[1]
+    sub_length = 2
+
+    def sliding_window(arr, num):
+        for i in range(sub_length, len(x)):
+            sub_list = x[(sub_length-i):i]
+            print(sub_list)
+
+
+solve("1341")  # = 7.
