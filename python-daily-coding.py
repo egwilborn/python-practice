@@ -578,30 +578,6 @@ def friend(x):
     # if not next continue
     # return friend array
 
-# DESCRIPTION:
-# Given a string of integers, return the number of odd-numbered substrings that can be formed.
-
-# For example, in the case of "1341", they are 1, 1, 3, 13, 41, 341, 1341, a total of 7 numbers.
-
-# solve("1341") = 7. See test cases for more examples.
-
-
-def solve(x):
-    # define a counter
-    count = 0
-    # setup sliding window
-    char = x[1]
-    sub_length = 2
-
-    def sliding_window(arr, num):
-        for i in range(sub_length, len(x)):
-            sub_list = x[(sub_length-i):i-1]
-            print(sub_list)
-    sliding_window(x, sub_length)
-
-
-# solve("1341")  # = 7.
-
 
 # DESCRIPTION:
 # Traditionally in FizzBuzz, multiples of 3 are replaced by "Fizz" and multiples of 5 are replaced by "Buzz". But we could also play FizzBuzz with any other integer pair [n, m] whose multiples are replaced with Fizz and Buzz.
@@ -641,9 +617,64 @@ def reverse_fizz_buzz(array):
         return [fizz_positions[0], buzz_positions[0]]
 
 
-print(reverse_fizz_buzz([1, 2, "Fizz", 4, "Buzz", 6]))  # [3, 5]
-print(reverse_fizz_buzz([1, "Fizz", "Buzz", "Fizz", 5, "FizzBuzz"]))  # [2,3]
-print(reverse_fizz_buzz(
-    [1, "FizzBuzz", 3, "FizzBuzz", 5, "FizzBuzz"]))  # [2,2]
-print(reverse_fizz_buzz(["Fizz", "Fizz", "Fizz", "Fizz",
-                         "Fizz", "FizzBuzz"]))  # [1,6]
+# print(reverse_fizz_buzz([1, 2, "Fizz", 4, "Buzz", 6]))  # [3, 5]
+# print(reverse_fizz_buzz([1, "Fizz", "Buzz", "Fizz", 5, "FizzBuzz"]))  # [2,3]
+# print(reverse_fizz_buzz(
+#     [1, "FizzBuzz", 3, "FizzBuzz", 5, "FizzBuzz"]))  # [2,2]
+# print(reverse_fizz_buzz(["Fizz", "Fizz", "Fizz", "Fizz",
+#                          "Fizz", "FizzBuzz"]))  # [1,6]
+
+# DESCRIPTION:
+# Given a string of integers, return the number of odd-numbered substrings that can be formed.
+
+# For example, in the case of "1341", they are 1, 1, 3, 13, 41, 341, 1341, a total of 7 numbers.
+
+# solve("1341") = 7. See test cases for more examples.
+
+
+def solve(x):
+    # define a counter
+    count = 0
+    # setup sliding window
+    char = x[1]
+    sub_length = 2
+
+    def sliding_window(arr, num):
+        for i in range(sub_length, len(x)):
+            sub_list = x[(sub_length-i):i-1]
+            print(sub_list)
+    sliding_window(x, sub_length)
+
+
+# solve("1341")  # = 7.
+
+# Task
+# Create a function that always returns True for every item in a given list. However, if an element is the word 'flick', switch to always returning the opposite boolean value.
+
+def flick_switch(lst):
+    state = 1
+    result = []
+    for item in lst:
+        if (item == "flick"):
+            state = state*-1
+        if (state > 0):
+            result.append(True)
+        elif (state < 0):
+            result.append(False)
+    return result
+
+
+# Examples
+# ➞ [True, False, False, False]
+print(flick_switch(['codewars', 'flick', 'code', 'wars']))
+
+# ➞ [False, False, False, False]
+print(flick_switch(['flick', 'chocolate', 'adventure', 'sunshine']))
+
+# ➞ [True, True, False, False, True]
+
+print(flick_switch(['bicycle', 'jarmony', 'flick', 'sheep', 'flick']))
+# Notes
+# "flick" will always be given in lowercase.
+# A list may contain multiple flicks.
+# Switch the boolean value on the same element as the flick itself.
