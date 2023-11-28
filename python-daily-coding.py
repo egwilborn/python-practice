@@ -666,15 +666,89 @@ def flick_switch(lst):
 
 # Examples
 # ➞ [True, False, False, False]
-print(flick_switch(['codewars', 'flick', 'code', 'wars']))
+# print(flick_switch(['codewars', 'flick', 'code', 'wars']))
 
 # ➞ [False, False, False, False]
-print(flick_switch(['flick', 'chocolate', 'adventure', 'sunshine']))
+# print(flick_switch(['flick', 'chocolate', 'adventure', 'sunshine']))
 
 # ➞ [True, True, False, False, True]
 
-print(flick_switch(['bicycle', 'jarmony', 'flick', 'sheep', 'flick']))
+# print(flick_switch(['bicycle', 'jarmony', 'flick', 'sheep', 'flick']))
 # Notes
 # "flick" will always be given in lowercase.
 # A list may contain multiple flicks.
 # Switch the boolean value on the same element as the flick itself.
+
+
+# Background:
+# You are making a game that has 3 hoops. There is a red, blue and, green hoop. Whenever you throw a ball into the hoops you get 100 points. and if you get three into a single hoop in a row you get a bonus depending on the color of the hoop. The red hoop gives you 500 bonus points, the blue hoop gives you 300 bonus points, and the green hoop gives you 200 bonus points. Whenever you get a 3 in a row the hoop turns off until you get a 3 in a row inside of another hoop.
+
+# Challenge:
+# Your mission is to write a function prizeCounter that takes in an array of either R, G, B and output the score they would get. Every time they make it into an active hoop they get 100 points. If they were to make it into the same hoop 3 times in a row then they get a bonus based on the color of the hoop. Red = 500   Blue = 300   Green = 200
+
+# Whenever you make it into a single hoop 3 times in a row, it then is deactivated and the other hoops are reactivated if they were deactivated.
+
+# While deactivated, a hoop will give no points if you make it inside of it, but you will still break your streak.
+
+# Instructions:
+# The function prizeCounter will receive a basic array as its parameter.
+# Return the score recieved by the player.
+# The array will only contain the values ['R', 'G', 'B'].
+
+def prize_counter(sequence):
+    score = 0
+    R = 0
+    G = 0
+    B = 0
+    inactive = 0
+    for turn in sequence:
+        if turn == "R":
+            # in each turn you need to
+            # check to see if that ring is "active"
+            if turn == inactive:
+                R += 0
+            else:
+                R += 1
+                G = 0
+                B = 0
+                score += 100
+                if R % 3 == 0:
+                    score += 500
+                    inactive = "R"
+                    R = 0
+            # keep track of what came before using R G B
+            # update the score accordingly
+        elif turn == "G":
+            if turn == inactive:
+                G += 0
+            else:
+                G += 1
+                R = 0
+                B = 0
+                score += 100
+                if G % 3 == 0:
+                    score += 200
+                    inactive = "G"
+                    G = 0
+        else:  # turn == B
+            if turn == inactive:
+                B += 0
+            else:
+                B += 1
+                R = 0
+                G = 0
+                score += 100
+                if B % 3 == 0:
+                    score += 300
+                    inactive = "B"
+                    B = 0
+    return score
+
+
+print(prize_counter(['R', 'R', 'R', 'R']))
+# // output will be 800 because you get 100 from each of the first 3 R then you get the bonus of 500 and it deactivates meaning that the
+# // fourth R doesn't give any points so 100 + 100 + 100 + 500 = 800
+
+print(prize_counter(['R', 'B', 'G', 'G', 'B', 'B', 'B', 'G', 'B']))
+# // output will be 1100 because you get 100 for all of the letters except for the last one so thwat would be 800 points then you get the bonus from
+# // getting a streak of 3 B so add 300 so you have 1100 and since you got the streak that color deactivates and the last one doesn't give any points
