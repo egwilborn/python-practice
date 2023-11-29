@@ -745,10 +745,27 @@ def prize_counter(sequence):
     return score
 
 
-print(prize_counter(['R', 'R', 'R', 'R']))
+# print(prize_counter(['R', 'R', 'R', 'R']))
 # // output will be 800 because you get 100 from each of the first 3 R then you get the bonus of 500 and it deactivates meaning that the
 # // fourth R doesn't give any points so 100 + 100 + 100 + 500 = 800
 
-print(prize_counter(['R', 'B', 'G', 'G', 'B', 'B', 'B', 'G', 'B']))
+# print(prize_counter(['R', 'B', 'G', 'G', 'B', 'B', 'B', 'G', 'B']))
 # // output will be 1100 because you get 100 for all of the letters except for the last one so thwat would be 800 points then you get the bonus from
 # // getting a streak of 3 B so add 300 so you have 1100 and since you got the streak that color deactivates and the last one doesn't give any points
+
+# In this kata you should simply determine, whether a given year is a leap year or not. In case you don't know the rules, here they are:
+
+# Years divisible by 4 are leap years,
+# but years divisible by 100 are not leap years,
+# but years divisible by 400 are leap years.
+# Tested years are in range 1600 ≤ year ≤ 4000.
+
+def is_leap_year(year):
+    if year % 400 == 0:
+        return True
+    elif year % 100 == 0:
+        return False
+    elif year % 4 == 0:
+        return True
+    else:
+        return False
