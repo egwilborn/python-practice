@@ -800,4 +800,26 @@ def spoonerize(words):
     return " ".join(new_words_list)
 
 
-print(spoonerize("not picking"))
+# print(spoonerize("not picking"))
+
+# Given a point in a Euclidean plane (x and y), return the quadrant the point exists in: 1, 2, 3 or 4 (integer). x and y are non-zero integers, therefore the given point never lies on the axes.
+
+def quadrant(x, y):
+    quadrant = None
+    if (x > 0 and y > 0):
+        quadrant = 1
+    elif (x < 0 and y > 0):
+        quadrant = 2
+    elif (x < 0 and y < 0):
+        quadrant = 3
+    else:
+        quadrant = 4
+    return quadrant
+
+
+# Examples
+print(quadrant(1, 2))  # => 1
+print(quadrant(3, 5))  # => 1
+print(quadrant(-10, 100))  # => 2
+print(quadrant(-1, -9))  # => 3
+print(quadrant(19, -56))  # => 4
