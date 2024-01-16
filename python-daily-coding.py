@@ -817,9 +817,23 @@ def quadrant(x, y):
     return quadrant
 
 
-# Examples
-print(quadrant(1, 2))  # => 1
-print(quadrant(3, 5))  # => 1
-print(quadrant(-10, 100))  # => 2
-print(quadrant(-1, -9))  # => 3
-print(quadrant(19, -56))  # => 4
+# # Examples
+# print(quadrant(1, 2))  # => 1
+# print(quadrant(3, 5))  # => 1
+# print(quadrant(-10, 100))  # => 2
+# print(quadrant(-1, -9))  # => 3
+# print(quadrant(19, -56))  # => 4
+
+# Write an algorithm that takes an array and moves all of the zeros to the end, preserving the order of the other elements.
+def move_zeros(list):
+    adjusted_list = []
+    zeros = []
+    for num in list:
+        if (num == 0):
+            zeros.append(num)
+        else:
+            adjusted_list.append(num)
+    return (adjusted_list + zeros)
+
+
+move_zeros([1, 0, 1, 2, 0, 1, 3])  # returns [1, 1, 2, 1, 3, 0, 0]
