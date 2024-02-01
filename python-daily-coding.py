@@ -836,4 +836,58 @@ def move_zeros(list):
     return (adjusted_list + zeros)
 
 
-move_zeros([1, 0, 1, 2, 0, 1, 3])  # returns [1, 1, 2, 1, 3, 0, 0]
+# move_zeros([1, 0, 1, 2, 0, 1, 3])  # returns [1, 1, 2, 1, 3, 0, 0]
+
+
+###################################
+# Given two strings ransomNote and magazine, return true if ransomNote can be constructed by
+# using the letters from magazine and false otherwise.
+
+# Each letter in magazine can only be used once in ransomNote.
+
+def can_construct(ransom_note, magazine):
+    # declare variables to store map for random note and magazine
+    note_map = {}
+    mag_map = {}
+    result = True
+    # fill maps based on each char in note and mag then count how many times they show up
+    for char in ransom_note:
+        if (char in note_map):
+            note_map[char] += 1
+        else:
+            note_map[char] = 1
+    for char in magazine:
+        if (char in mag_map):
+            mag_map[char] += 1
+        else:
+            mag_map[char] = 1
+    # loop through the keys in the note map
+    # if value for key is same between note and mag, move on, otherwise, break
+    for key in note_map:
+        if (key not in mag_map):
+            result = False
+            break
+        elif (note_map[key] > mag_map[key]):
+            result = False
+            break
+
+    return result
+
+
+# Example 1:
+# Input: ransomNote = "a", magazine = "b"
+# Output: false
+
+# can_construct("a", "b")
+
+# Example 2:
+# Input: ransomNote = "aa", magazine = "ab"
+# Output: false
+
+# can_construct("aa", "ab")
+
+# Example 3:
+# Input: ransomNote = "aa", magazine = "aab"
+# Output: true
+
+# can_construct("aa", "aab")
