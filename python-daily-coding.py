@@ -891,3 +891,34 @@ def can_construct(ransom_note, magazine):
 # Output: true
 
 # can_construct("aa", "aab")
+
+
+# An isogram is a word that has no repeating letters, consecutive or non-consecutive. I
+# mplement a function that determines whether a string that contains only letters is an isogram.
+# Assume the empty string is an isogram. Ignore letter case.
+
+# Example: (Input --> Output)
+def is_isogram(string):
+    # make an object
+    char_map = {}
+    # define variable for result
+    result = True
+    # loop over string characters and add letter to object / increase letter count
+    for char in string:
+        if (char.lower() in char_map):
+            char_map[char.lower()] += 1
+        else:
+            char_map[char.lower()] = 1
+    # if any letter count is greater than one, return false
+    for key in char_map:
+        if (char_map[key] > 1):
+            result = False
+    print(result, char_map)
+    return result, char_map
+
+# "Dermatoglyphics" --> true "aba" --> false "moOse" --> false (ignore letter case)
+
+
+is_isogram("Dermatoglyphics")  # = true
+is_isogram("moose")  # = false
+is_isogram("aba")  # = false
