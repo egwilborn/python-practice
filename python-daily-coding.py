@@ -919,6 +919,59 @@ def is_isogram(string):
 # "Dermatoglyphics" --> true "aba" --> false "moOse" --> false (ignore letter case)
 
 
-is_isogram("Dermatoglyphics")  # = true
-is_isogram("moose")  # = false
-is_isogram("aba")  # = false
+# is_isogram("Dermatoglyphics")  # = true
+# is_isogram("moose")  # = false
+# is_isogram("aba")  # = false
+
+
+# The number
+# 89
+# 89 is the first integer with more than one digit that fulfills the property partially introduced in the title of this kata.
+# What's the use of saying "Eureka"? Because this sum gives the same number:
+# 89=8^1+9^2
+
+# The next number in having this property is
+# 135=1^1+3^2+5^3
+
+# Task
+# We need a function to collect these numbers, that may receive two integers
+# a, b that defines the range [a,b]
+# [a,b] (inclusive) and outputs a list of the sorted numbers in the range that fulfills the property described above.
+
+# Examples
+# Let's see some cases (input -> output):
+
+# 1, 10  --> [1, 2, 3, 4, 5, 6, 7, 8, 9]
+# 1, 100 --> [1, 2, 3, 4, 5, 6, 7, 8, 9, 89]
+# If there are no numbers of this kind in the range
+# [a,b] the function should output an empty list.
+
+# 90, 100 --> []
+
+def sum_dig_pow(a, b):  # range(a, b + 1) will be studied by the function
+    # make a helper function that checks for the pattern
+    def is_eureka(num):
+        # helper function accepts a number and splits the number into digits and exponents them
+        powers = []
+        for count, char in enumerate(str(num)):
+            powers.append(int(char)**(count+1))
+        # then reduce the array into the sum of it's powers
+        sum_of_squares = sum(powers)
+        # if the sum is the same as the number, then return true
+        if (sum_of_squares == num):
+            return True
+        # if not, return false
+        else:
+            return False
+    # then define an array variable
+    results = []
+    # loop over range from a to b then push any true values into array variable
+    for digit in range(a, b+1):
+        if (is_eureka(digit)):
+            results.append(digit)
+    return results
+
+
+sum_dig_pow(1, 10)  # --> [1, 2, 3, 4, 5, 6, 7, 8, 9]
+sum_dig_pow(1, 100)  # --> [1, 2, 3, 4, 5, 6, 7, 8, 9, 89]
+sum_dig_pow(90, 100)  # --> []
