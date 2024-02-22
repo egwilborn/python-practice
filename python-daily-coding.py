@@ -972,6 +972,48 @@ def sum_dig_pow(a, b):  # range(a, b + 1) will be studied by the function
     return results
 
 
-sum_dig_pow(1, 10)  # --> [1, 2, 3, 4, 5, 6, 7, 8, 9]
-sum_dig_pow(1, 100)  # --> [1, 2, 3, 4, 5, 6, 7, 8, 9, 89]
-sum_dig_pow(90, 100)  # --> []
+# sum_dig_pow(1, 10)  # --> [1, 2, 3, 4, 5, 6, 7, 8, 9]
+# sum_dig_pow(1, 100)  # --> [1, 2, 3, 4, 5, 6, 7, 8, 9, 89]
+# sum_dig_pow(90, 100)  # --> []
+
+
+# The input is a string str of digits. Cut the string into chunks (a chunk here is a substring of the initial string) of size sz (ignore the last chunk if its size is less than sz).
+
+# If a chunk represents an integer such as the sum of the cubes of its digits is divisible by 2, reverse that chunk; otherwise rotate it to the left by one position. Put together these modified chunks and return the result as a string.
+def rev_rot(strng, sz):
+    if len(sz) > len(strng) or len(sz) <= 0:
+        return ""
+    # write a while loop where the string is cut to sz until the string is <= sz
+    # push each chunk to a list
+
+    # write three helper functions
+        # 1) checks the number to see if the sum of the cubes of its digits is divisible by 2
+        # loops over the string, changes chars into ints, cubes each then puts them in an array
+        # check that the sum of the array is divisible by 2 - if yes, return true, if no, return false
+        # 2) reverses a string
+        # might exist in python already?
+        # if not, loop over string using for loop, and push chars into new array by looping backward (start at end then i--)
+        # rejoin the chars and you've got it reverses
+        # 3) rotates the string to the left by one
+        # convert to array?
+        # store first char in a variable
+        # delete first variable from the string/array
+        # add the char to the end of the string/array
+    # then loop through the array of chunks and use function #1 on each, depending on the outcome it was run #2 or #3 on the string chucnk
+    # then the chunks will be put back together in one string and returned
+
+
+# If sz is <= 0 or if str is empty return ""
+# If sz is greater (>) than the length of str it is impossible to take a chunk of size sz hence return "".
+# Examples:
+rev_rot("123456987654", 6)  # --> "234561876549"
+rev_rot("123456987653", 6)  # --> "234561356789"
+# revrot("66443875", 4) --> "44668753"
+# revrot("66443875", 8) --> "64438756"
+# revrot("664438769", 8) --> "67834466"
+# revrot("123456779", 8) --> "23456771"
+# revrot("", 8) --> ""
+# revrot("123456779", 0) --> ""
+# revrot("563000655734469485", 4) --> "0365065073456944"
+# Example of a string rotated to the left by one position:
+# s = "123456" gives "234561".
