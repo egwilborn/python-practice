@@ -981,39 +981,80 @@ def sum_dig_pow(a, b):  # range(a, b + 1) will be studied by the function
 
 # If a chunk represents an integer such as the sum of the cubes of its digits is divisible by 2, reverse that chunk; otherwise rotate it to the left by one position. Put together these modified chunks and return the result as a string.
 def rev_rot(strng, sz):
-    if len(sz) > len(strng) or len(sz) <= 0:
+    # handles edge cases
+    if sz > len(strng) or len(strng) <= 0 or sz <= 0:
         return ""
-    # write a while loop where the string is cut to sz until the string is <= sz
-    # push each chunk to a list
+    # stores chunks of the strings once divides
+    chunks = []
+    # helper function that uses recursion to cut the string up based on sz
+
+    def cut_to_sz(str_to_cut):
+        if (len(str_to_cut) < sz):
+            return
+        elif (len(str_to_cut) == sz):
+            chunks.append(str_to_cut)
+            return
+        else:
+            chunks.append(str_to_cut[0:sz])
+            cut_to_sz(str_to_cut[sz:(len(str_to_cut))])
+
+    cut_to_sz(strng)
 
     # write three helper functions
-        # 1) checks the number to see if the sum of the cubes of its digits is divisible by 2
-        # loops over the string, changes chars into ints, cubes each then puts them in an array
-        # check that the sum of the array is divisible by 2 - if yes, return true, if no, return false
-        # 2) reverses a string
-        # might exist in python already?
-        # if not, loop over string using for loop, and push chars into new array by looping backward (start at end then i--)
-        # rejoin the chars and you've got it reverses
-        # 3) rotates the string to the left by one
-        # convert to array?
-        # store first char in a variable
-        # delete first variable from the string/array
-        # add the char to the end of the string/array
-    # then loop through the array of chunks and use function #1 on each, depending on the outcome it was run #2 or #3 on the string chucnk
+
+    # 1) checks the number to see if the sum of the cubes of its digits is divisible by 2
+    def check_sum_cubes(chunk):
+        cubes = []
+    # loops over the string, changes chars into ints, cubes each then puts them in an array
+        for char in chunk:
+            cubes.append(int(char)**3)
+    # check that the sum of the array is divisible by 2 - if yes, return true, if no, return false
+        if (sum(cubes) % 2 == 0):
+            return True
+        else:
+            return False
+
+    # 2) reverses a string
+    # reverses string using slicing method
+    def reverse_chunk(chunk):
+        return chunk[::-1]
+
+    # 3) rotates the string to the left by one
+    def rotate_chunk(chunk):
+        # convert to array
+        chars = []
+        for char in chunk:
+            chars.append(char)
+    # store first char in a variable
+        first_char = chars[0]
+    # delete first variable from the string/array
+        chars.remove(chars[0])
+        chars.append(first_char)
+        return "".join(chars)
+    # add the char to the end of the string/array
+    # then loop through the array of chunks and use function #1 on each, depending on the outcome it will run #2 or #3 on the string chucnk
+    modified_chunks = []
+    for chunk in chunks:
+        if (check_sum_cubes(chunk)):
+            modified_chunks.append(reverse_chunk(chunk))
+        else:
+            modified_chunks.append(rotate_chunk(chunk))
     # then the chunks will be put back together in one string and returned
+    return "".join(modified_chunks)
 
 
 # If sz is <= 0 or if str is empty return ""
 # If sz is greater (>) than the length of str it is impossible to take a chunk of size sz hence return "".
 # Examples:
-rev_rot("123456987654", 6)  # --> "234561876549"
-rev_rot("123456987653", 6)  # --> "234561356789"
-# revrot("66443875", 4) --> "44668753"
-# revrot("66443875", 8) --> "64438756"
-# revrot("664438769", 8) --> "67834466"
-# revrot("123456779", 8) --> "23456771"
-# revrot("", 8) --> ""
-# revrot("123456779", 0) --> ""
-# revrot("563000655734469485", 4) --> "0365065073456944"
+# rev_rot("123456987654", 6)  # --> "234561876549"
+# rev_rot("123456987653", 6)  # --> "234561356789"
+# rev_rot("66443875", 4)  # --> "44668753"
+# rev_rot("66443875", 8)  # --> "64438756"
+# rev_rot("664438769", 8)  # --> "67834466"
+# rev_rot("123456779", 8)  # --> "23456771"
+# print(rev_rot("", 8))  # --> ""
+# print(rev_rot("123456779", 0))  # --> ""
+# rev_rot("563000655734469485", 4)  # --> "0365065073456944"
+
 # Example of a string rotated to the left by one position:
 # s = "123456" gives "234561".
