@@ -1093,8 +1093,53 @@ def make_readable(seconds):
     return f'{str_hours}:{str_minutes}:{str_seconds}'
 
 
-make_readable(0)  # "00:00:00"
-make_readable(59)  # "00:00:59"
-make_readable(60)  # "00:01:00"
-make_readable(3599)  # "00:59:59"
-make_readable(86399)  # "23:59:59"
+# make_readable(0)  # "00:00:00"
+# make_readable(59)  # "00:00:59"
+# make_readable(60)  # "00:01:00"
+# make_readable(3599)  # "00:59:59"
+# make_readable(86399)  # "23:59:59"
+
+# --------------------------------------------------------------------#
+# Your task in order to complete this Kata is to write a function which formats a duration, given as a number of seconds, in a human-friendly way.
+
+# The function must accept a non-negative integer. If it is zero, it just returns "now". Otherwise, the duration is expressed as a combination of years, days, hours, minutes and seconds.
+
+# It is much easier to understand with an example:
+
+# * For seconds = 62, your function should return
+#     "1 minute and 2 seconds"
+# * For seconds = 3662, your function should return
+#     "1 hour, 1 minute and 2 seconds"
+# For the purpose of this Kata, a year is 365 days and a day is 24 hours.
+
+# Note that spaces are important.
+
+# Detailed rules
+# The resulting expression is made of components like 4 seconds, 1 year, etc. In general, a positive integer and one of the valid units of time, separated by a space. The unit of time is used in plural if the integer is greater than 1.
+
+# The components are separated by a comma and a space (", "). Except the last component, which is separated by " and ", just like it would be written in English.
+
+# A more significant units of time will occur before than a least significant one. Therefore, 1 second and 1 year is not correct, but 1 year and 1 second is.
+
+# Different components have different unit of times. So there is not repeated units like in 5 seconds and 1 second.
+
+# A component will not appear at all if its value happens to be zero. Hence, 1 minute and 0 seconds is not valid, but it should be just 1 minute.
+
+# A unit of time must be used "as much as possible". It means that the function should not return 61 seconds, but 1 minute and 1 second instead. Formally, the duration specified by of a component must not be greater than any valid more significant unit of time.
+
+def format_duration(seconds):
+    # set up condition for seconds = 0 returns "now"
+    # set up years variable -- divide seconds by 31536000 (s in a yr) and use math.floor
+    # set up days variable -- subtract yrs*31536000 from seconds, then divide that number by 86,400 and use math.floor
+    # ^^ repeat above method for minutes and seconds
+    # once you have correct numbers, set up conditionals for str variables so that if years==0, then no string
+    # concat the strings and return
+
+    pass
+
+
+format_duration(132030240)  # "4 years, 68 days, 3 hours and 4 minutes"
+# "1 year, 19 days, 18 hours, 19 minutes and 46 seconds"
+format_duration(33243586)
+format_duration(0)  # "now"
+# --------------------------------------------------------------------#
