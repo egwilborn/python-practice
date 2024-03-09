@@ -1128,14 +1128,30 @@ def make_readable(seconds):
 # A unit of time must be used "as much as possible". It means that the function should not return 61 seconds, but 1 minute and 1 second instead. Formally, the duration specified by of a component must not be greater than any valid more significant unit of time.
 
 def format_duration(seconds):
+    import math
     # set up condition for seconds = 0 returns "now"
+    if (seconds == 0):
+        return "now"
     # set up years variable -- divide seconds by 31536000 (s in a yr) and use math.floor
+    years = math.floor(seconds / 31536000)
     # set up days variable -- subtract yrs*31536000 from seconds, then divide that number by 86,400 and use math.floor
-    # ^^ repeat above method for minutes and seconds
+    days = math.floor((seconds - (years*31536000))/86400)
+    # ^^ repeat above method for hours, minutes and seconds
+    hours = math.floor((seconds - ((years*31536000)+(days*86400)))/3600)
+    minutes = math.floor(
+        (seconds - ((years*31536000)+(days*86400)+(hours*3600)))/60)
+    seconds_left = math.floor(
+        seconds - ((years*31536000)+(days*86400)+(hours*3600)+(minutes*60)))
     # once you have correct numbers, set up conditionals for str variables so that if years==0, then no string
+    years_str = f"{str(years)} years" if years > 0 else ""
+    days_str = f"{str(days)} days" if days > 0 else ""
+    hours_str = f"{str(hours)} hours" if hours > 0 else ""
+    minutes_str = f"{str(minutes)} minutes" if minutes > 0 else ""
+    seconds_str = f"{str(seconds_left)} seconds" if seconds_left > 0 else ""
     # concat the strings and return
-
+    print(years_str, days_str, hours_str, minutes_str, seconds_str)
     pass
+# missing logic for the "and"
 
 
 format_duration(132030240)  # "4 years, 68 days, 3 hours and 4 minutes"
