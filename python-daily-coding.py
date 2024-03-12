@@ -1143,14 +1143,14 @@ def format_duration(seconds):
     seconds_left = math.floor(
         seconds - ((years*31536000)+(days*86400)+(hours*3600)+(minutes*60)))
     # once you have correct numbers, set up conditionals for str variables so that if years==0, then no string
-    years_str = f"{str(years)} years" if years > 0 else ""
-    days_str = f"{str(days)} days" if days > 0 else ""
-    hours_str = f"{str(hours)} hours" if hours > 0 else ""
-    minutes_str = f"{str(minutes)} minutes" if minutes > 0 else ""
+    years_str = f"{str(years)} years, " if years > 0 else ""
+    days_str = f"{str(days)} days, " if days > 0 else ""
+    hours_str = f"{str(hours)} hours, " if hours > 0 else ""
+    minutes_str = f"{str(minutes)} minutes, " if minutes > 0 else ""
     seconds_str = f"{str(seconds_left)} seconds" if seconds_left > 0 else ""
     # concat the strings and return
     print(years_str, days_str, hours_str, minutes_str, seconds_str)
-    pass
+    return years_str+days_str+hours_str+hours_str+minutes_str+seconds_str
 # missing logic for the "and"
 
 
