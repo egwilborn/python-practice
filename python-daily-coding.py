@@ -1143,19 +1143,24 @@ def format_duration(seconds):
     seconds_left = math.floor(
         seconds - ((years*31536000)+(days*86400)+(hours*3600)+(minutes*60)))
     # once you have correct numbers, set up conditionals for str variables so that if years==0, then no string
-    years_str = f"{str(years)} years, " if years > 0 else ""
-    days_str = f"{str(days)} days, " if days > 0 else ""
-    hours_str = f"{str(hours)} hours, " if hours > 0 else ""
-    minutes_str = f"{str(minutes)} minutes, " if minutes > 0 else ""
+    years_str = f"{str(years)} years" if years > 0 else ""
+    days_str = f"{str(days)} days" if days > 0 else ""
+    hours_str = f"{str(hours)} hours" if hours > 0 else ""
+    minutes_str = f"{str(minutes)} minutes" if minutes > 0 else ""
     seconds_str = f"{str(seconds_left)} seconds" if seconds_left > 0 else ""
     # concat the strings and return
-    print(years_str, days_str, hours_str, minutes_str, seconds_str)
-    return years_str+days_str+hours_str+hours_str+minutes_str+seconds_str
+    result_str = ""
+    if (seconds_left == 0):
+        result_str = f"{years_str}, {days_str}, {hours_str} and {minutes_str}"
+    else:
+        result_str = f"{years_str}, {days_str}, {hours_str}, {minutes_str} and {seconds_str}"
+
+    return result_str
 # missing logic for the "and"
 
 
-format_duration(132030240)  # "4 years, 68 days, 3 hours and 4 minutes"
+print(format_duration(132030240))  # "4 years, 68 days, 3 hours and 4 minutes"
 # "1 year, 19 days, 18 hours, 19 minutes and 46 seconds"
-format_duration(33243586)
-format_duration(0)  # "now"
+print(format_duration(33243586))
+print(format_duration(0))  # "now"
 # --------------------------------------------------------------------#
