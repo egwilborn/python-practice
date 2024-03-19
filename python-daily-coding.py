@@ -1159,8 +1159,91 @@ def format_duration(seconds):
 # missing logic for the "and"
 
 
-print(format_duration(132030240))  # "4 years, 68 days, 3 hours and 4 minutes"
-# "1 year, 19 days, 18 hours, 19 minutes and 46 seconds"
-print(format_duration(33243586))
-print(format_duration(0))  # "now"
+# print(format_duration(132030240))  # "4 years, 68 days, 3 hours and 4 minutes"
+# # "1 year, 19 days, 18 hours, 19 minutes and 46 seconds"
+# print(format_duration(33243586))
+# print(format_duration(0))  # "now"
 # --------------------------------------------------------------------#
+
+# Write a class called User that is used to calculate the amount that a user will progress through a ranking system similar to the one Codewars uses.
+
+# Business Rules:
+# A user starts at rank -8 and can progress all the way to 8.
+# There is no 0 (zero) rank. The next rank after -1 is 1.
+# Users will complete activities. These activities also have ranks.
+# Each time the user completes a ranked activity the users rank progress is updated based off of the activity's rank
+# The progress earned from the completed activity is relative to what the user's current rank is compared to the rank of the activity
+# A user's rank progress starts off at zero, each time the progress reaches 100 the user's rank is upgraded to the next level
+# Any remaining progress earned while in the previous rank will be applied towards the next rank's progress (we don't throw any progress away). The exception is if there is no other rank left to progress towards (Once you reach rank 8 there is no more progression).
+# A user cannot progress beyond rank 8.
+# The only acceptable range of rank values is -8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8. Any other value should raise an error.
+# The progress is scored like so:
+
+# Completing an activity that is ranked the same as that of the user's will be worth 3 points
+# Completing an activity that is ranked one ranking lower than the user's will be worth 1 point
+# Any activities completed that are ranking 2 levels or more lower than the user's ranking will be ignored
+# Completing an activity ranked higher than the current user's rank will accelerate the rank progression. The greater the difference between rankings the more the progression will be increased. The formula is 10 * d * d where d equals the difference in ranking between the activity and the user.
+# Logic Examples:
+# If a user ranked -8 completes an activity ranked -7 they will receive 10 progress
+# If a user ranked -8 completes an activity ranked -6 they will receive 40 progress
+# If a user ranked -8 completes an activity ranked -5 they will receive 90 progress
+# If a user ranked -8 completes an activity ranked -4 they will receive 160 progress, resulting in the user being upgraded to rank -7 and having earned 60 progress towards their next rank
+# If a user ranked -1 completes an activity ranked 1 they will receive 10 progress (remember, zero rank is ignored)
+# Code Usage Examples:
+
+class User:
+    def __init__(self):
+        self.rank_values = [-8, -7, -6, -5, -
+                            4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8]
+        self.rank_position = 0
+        self.rank = self.rank_values[self.rank_position]
+        self.progress = 0
+
+    def inc_progress(self, activity_rank):
+        import math
+
+        # define a variable for the progress points allotted
+        progress_points = 0
+        # determine the index of the activity rank within rank values
+        activity_rank_index = self.rank_values.index(activity_rank)
+      # calculate d as activity_rank_index - rank_position
+        d = activity_rank_index - self.rank_position
+        # if d is greater than 0, use progress points = 10*d*d
+        if (d > 0):
+            progress_points = 10*d*d
+        # if d == 0, progress = progress +3
+        elif (d == 0):
+            progress_points = 3
+        # if d == -1, progress = progress +1
+        elif (d == -1):
+            progress_points = 1
+
+        self.progress += progress_points
+
+        # now we address rank increase
+        # if progress >=100
+        if (self.progress >= 100):
+            ranks_increase = math.floor(self.progress/100)
+            # if rank==8, then subtract 100 from progress
+            if (self.rank == 8):
+                self.progress = self.progress - ranks_increase*100
+            else:
+                # else: subtract 100 from progress and increase rank posiiton
+                self.progress = self.progress - ranks_increase*100
+                self.rank_position = self.rank_position + ranks_increase
+                self.rank = self.rank_values[self.rank_position]
+
+
+user = User()
+# print("user rank", user.rank)  # => -8
+# print("user progress", user.progress)  # => 0
+# user.inc_progress(-7)
+# print("after inc_progress(-7)", "user progres", user.progress)  # => 10
+# user.inc_progress(-5)  # will add 90 progress
+# print("after in_progress(-5)", "user progress",
+#       user.progress)  # => 0 # progress is now zero
+# print("user rank", user.rank)  # => -7 # rank was upgraded to -7
+print("User Rank:", user.rank, "User Progress:", user.progress)
+user.inc_progress(1)
+print("After inc_progress(1)", "User Rank:",
+      user.rank, "User Progress:", user.progress)
