@@ -1243,7 +1243,42 @@ user = User()
 # print("after in_progress(-5)", "user progress",
 #       user.progress)  # => 0 # progress is now zero
 # print("user rank", user.rank)  # => -7 # rank was upgraded to -7
-print("User Rank:", user.rank, "User Progress:", user.progress)
-user.inc_progress(1)
-print("After inc_progress(1)", "User Rank:",
-      user.rank, "User Progress:", user.progress)
+# print("User Rank:", user.rank, "User Progress:", user.progress)
+# user.inc_progress(1)
+# print("After inc_progress(1)", "User Rank:",
+#       user.rank, "User Progress:", user.progress)
+
+
+class Solution(object):
+    def searchInsert(self, nums, target):
+        # pseudocode
+        # theoretically, you could use the index() method to find the index if the target is in the list
+        # but we need to find where it should go anyway
+        # so, given that the array is sorted, I'd use a while loop to find at what point the num is >= to target
+        # so I'd first define the index variable
+        i = 0
+        while (nums[i] < target):
+            if (nums[len(nums)-1] < target):
+                i = len(nums)
+                break
+            i += 1
+        return i
+        # then I'd record the last point before the loop ends
+        # then compare the target number with the next number, if, equal, return that index,
+        # if not, still return that index, because it would be sorted there
+# Input: nums = [1,3,5,6], target = 5
+# Output: 2
+
+# Example 2:
+# Input: nums = [1,3,5,6], target = 2
+# Output: 1
+
+# Example 3:
+# Input: nums = [1,3,5,6], target = 7
+# Output: 4
+
+
+solution = Solution()
+solution.searchInsert([1, 3, 5, 6], 5)
+solution.searchInsert([1, 3, 5, 6], 2)
+solution.searchInsert([1, 3, 5, 6], 7)
