@@ -1278,7 +1278,56 @@ class Solution(object):
 # Output: 4
 
 
+# solution = Solution()
+# solution.searchInsert([1, 3, 5, 6], 5)
+# solution.searchInsert([1, 3, 5, 6], 2)
+# solution.searchInsert([1, 3, 5, 6], 7)
+
+# ----------------------------------------------------------------------------#
+# Given an integer x, return true if x is a
+# palindrome
+# , and false otherwise.
+
+
+# Example 1:
+
+# Input: x = 121
+# Output: true
+# Explanation: 121 reads as 121 from left to right and from right to left.
+# Example 2:
+
+# Input: x = -121
+# Output: false
+# Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+# Example 3:
+
+# Input: x = 10
+# Output: false
+# Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
+
+
+class Solution(object):
+    def isPalindrome(self, x):
+        # if negative, False
+        if (x < 0):
+            return False
+        else:
+            # change to list
+            x_list = []
+            for char in str(x):
+                x_list.append(char)
+            # reverse list
+            reversed_x_list = list(reversed(x_list))
+            # compare to original list
+            if (x_list == reversed_x_list):
+                print(True)
+                return True
+            else:
+                print(False)
+                return False
+
+
 solution = Solution()
-solution.searchInsert([1, 3, 5, 6], 5)
-solution.searchInsert([1, 3, 5, 6], 2)
-solution.searchInsert([1, 3, 5, 6], 7)
+solution.isPalindrome(121)  # True
+solution.isPalindrome(-121)  # False
+solution.isPalindrome(10)  # False
