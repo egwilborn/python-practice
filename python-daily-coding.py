@@ -1327,7 +1327,49 @@ class Solution(object):
                 return False
 
 
+# solution = Solution()
+# solution.isPalindrome(121)  # True
+# solution.isPalindrome(-121)  # False
+# solution.isPalindrome(10)  # False
+
+# ------------------------------------------------------------------#
+# Write a function to find the longest common prefix string amongst an array of strings.
+
+# If there is no common prefix, return an empty string "".
+
+
+# Example 1:
+
+# Input: strs = ["flower","flow","flight"]
+# Output: "fl"
+# Example 2:
+
+# Input: strs = ["dog","racecar","car"]
+# Output: ""
+# Explanation: There is no common prefix among the input strings.
+
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        # determine the longest string
+        longest_string_length = 0
+        longest_string_idx = 0
+        common_chars = []
+        # loop over strings and save the index of the longest one
+        for idx, str in enumerate(strs):
+            if len(str) > longest_string_length:
+                longest_string_idx = idx
+                longest_string_length = len(str)
+        # the loop over the longest string char for char
+        for idx, char in enumerate(strs[longest_string_idx]):
+            # compare current char to the char at that index in the other strings
+            for str in strs:
+                if (char == list(str)[idx]):
+                    print("yay")
+
+        # if chars are the same, save the index
+        # if chars don't match, break
+
+
 solution = Solution()
-solution.isPalindrome(121)  # True
-solution.isPalindrome(-121)  # False
-solution.isPalindrome(10)  # False
+solution.longestCommonPrefix(["flower", "flow", "flight"])  # "fl"
+solution.longestCommonPrefix(["dog", "racecar", "car"])  # ""
