@@ -1363,8 +1363,11 @@ class Solution(object):
         for idx, char in enumerate(strs[longest_string_idx]):
             # compare current char to the char at that index in the other strings
             for str in strs:
-                if (char == list(str)[idx]):
-                    print("yay")
+                if (list(str)[idx] and char == list(str)[idx]):
+                    common_chars.append(char)
+                else:
+                    break
+        return common_chars
 
         # if chars are the same, save the index
         # if chars don't match, break
