@@ -1350,27 +1350,7 @@ class Solution(object):
 
 class Solution(object):
     def longestCommonPrefix(self, strs):
-        # determine the longest string
-        longest_string_length = 0
-        longest_string_idx = 0
-        common_chars = []
-        # loop over strings and save the index of the longest one
-        for idx, str in enumerate(strs):
-            if len(str) > longest_string_length:
-                longest_string_idx = idx
-                longest_string_length = len(str)
-        # the loop over the longest string char for char
-        for idx, char in enumerate(strs[longest_string_idx]):
-            # compare current char to the char at that index in the other strings
-            for str in strs:
-                if (list(str)[idx] and char == list(str)[idx]):
-                    common_chars.append(char)
-                else:
-                    break
-        return common_chars
-
-        # if chars are the same, save the index
-        # if chars don't match, break
+        return ""
 
 
 solution = Solution()
