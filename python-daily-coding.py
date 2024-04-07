@@ -1333,26 +1333,35 @@ class Solution(object):
 # solution.isPalindrome(10)  # False
 
 # ------------------------------------------------------------------#
-# Write a function to find the longest common prefix string amongst an array of strings.
+# ROT13 is a simple letter substitution cipher that replaces a letter with the letter 13 letters after it in the alphabet. ROT13 is an example of the Caesar cipher.
 
-# If there is no common prefix, return an empty string "".
+# Create a function that takes a string and returns the string ciphered with Rot13. If there are numbers or special characters included in the string, they should be returned as they are. Only letters from the latin/english alphabet should be shifted, like in the original Rot13 "implementation".
+
+# Please note that using encode is considered cheating.
+
+def rot13(message):
+    # make a list containing the alphabet
+    alph = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
+            "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    decoded_message = []
+    # loop over message
+    for char in message:
+        # if char in messages is included in alphabet list (regardless of caps)
+        if (alph.__contains__((char.lower()))):
+            # encode by taking the index of the char in alph and add 13.
+            idx_plus = alph.index(char.lower()) + 13
+        # if greater than 26, than subtract 26
+            if (idx_plus >= 26):
+                idx_plus -= 26
+            decoded_message.append(alph[idx_plus]) if char == char.lower(
+            ) else decoded_message.append((alph[idx_plus]).upper())
+        else:
+            decoded_message.append(char)
+    # print("".join(decoded_message))
+    return "".join(decoded_message)
 
 
-# Example 1:
-
-# Input: strs = ["flower","flow","flight"]
-# Output: "fl"
-# Example 2:
-
-# Input: strs = ["dog","racecar","car"]
-# Output: ""
-# Explanation: There is no common prefix among the input strings.
-
-class Solution(object):
-    def longestCommonPrefix(self, strs):
-        return ""
-
-
-solution = Solution()
-solution.longestCommonPrefix(["flower", "flow", "flight"])  # "fl"
-solution.longestCommonPrefix(["dog", "racecar", "car"])  # ""
+rot13('test')  # grfg
+rot13('Test')  # Grfg
+rot13('aA bB zZ 1234 *!?%')  # 'nN oO mM 1234 *!?%'
+rot13('abcdefghijklmnopqrstuvwxyz')
