@@ -983,6 +983,18 @@ def sum_dig_pow(a, b):  # range(a, b + 1) will be studied by the function
 # The input is a string str of digits. Cut the string into chunks (a chunk here is a substring of the initial string) of size sz (ignore the last chunk if its size is less than sz).
 
 # If a chunk represents an integer such as the sum of the cubes of its digits is divisible by 2, reverse that chunk; otherwise rotate it to the left by one position. Put together these modified chunks and return the result as a string.
+seq = []
+
+
+def recursion(str):
+    # condition
+    if len(seq) > 6:
+        return
+    else:
+        seq.append(str)
+        recursion(4)
+
+
 def rev_rot(strng, sz):
     # handles edge cases
     if sz > len(strng) or len(strng) <= 0 or sz <= 0:
@@ -1049,7 +1061,7 @@ def rev_rot(strng, sz):
 # If sz is <= 0 or if str is empty return ""
 # If sz is greater (>) than the length of str it is impossible to take a chunk of size sz hence return "".
 # Examples:
-# rev_rot("123456987654", 6)  # --> "234561876549"
+print(rev_rot("123456987654", 6))  # --> "234561876549"
 # rev_rot("123456987653", 6)  # --> "234561356789"
 # rev_rot("66443875", 4)  # --> "44668753"
 # rev_rot("66443875", 8)  # --> "64438756"
@@ -1361,7 +1373,9 @@ def rot13(message):
     return "".join(decoded_message)
 
 
-rot13('test')  # grfg
-rot13('Test')  # Grfg
-rot13('aA bB zZ 1234 *!?%')  # 'nN oO mM 1234 *!?%'
-rot13('abcdefghijklmnopqrstuvwxyz')
+# rot13('test')  # grfg
+# rot13('Test')  # Grfg
+# rot13('aA bB zZ 1234 *!?%')  # 'nN oO mM 1234 *!?%'
+# rot13('abcdefghijklmnopqrstuvwxyz')
+
+# -----------------------------------------------------------------------------------#
